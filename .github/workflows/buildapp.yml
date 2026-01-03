@@ -122,15 +122,17 @@ jobs:
 
       - name: Install libundirect
         run: |
-          # Set THEOS environment variable if not already set
-          export THEOS="${THEOS:-$HOME/theos}"
+          # The workflow sets THEOS in the runner's work directory
+          export THEOS="${GITHUB_WORKSPACE}/../theos"
     
-          # Clone and install libundirect
+          # Clone libundirect
           git clone https://github.com/opa334/libundirect.git
           cd libundirect
+    
+          # Build and install with the correct THEOS path
+          make THEOS=$THEOS
           make install THEOS=$THEOS
-
-
+        
       - name: Hash YT ipa url
         run: |
           URL_YT="$(jq -r '.inputs.decrypted_youtube_url' $GITHUB_EVENT_PATH)"
