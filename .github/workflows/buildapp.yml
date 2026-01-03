@@ -120,6 +120,12 @@ jobs:
           (echo export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" >> ~/.bash_profile)
           source ~/.bash_profile
 
+      - name: Install libundirect
+        run: |
+          git clone https://github.com/opa334/libundirect.git
+          cd libundirect
+          ./install_to_theos.sh
+
       - name: Hash YT ipa url
         run: |
           URL_YT="$(jq -r '.inputs.decrypted_youtube_url' $GITHUB_EVENT_PATH)"
