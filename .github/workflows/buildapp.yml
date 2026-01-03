@@ -122,9 +122,14 @@ jobs:
 
       - name: Install libundirect
         run: |
+          # Set THEOS environment variable if not already set
+          export THEOS="${THEOS:-$HOME/theos}"
+    
+          # Clone and install libundirect
           git clone https://github.com/opa334/libundirect.git
           cd libundirect
-          ./install_to_theos.sh
+         make install THEOS=$THEOS
+
 
       - name: Hash YT ipa url
         run: |
