@@ -128,7 +128,7 @@ jobs:
           # Clone and install libundirect
           git clone https://github.com/opa334/libundirect.git
           cd libundirect
-         make install THEOS=$THEOS
+          make install THEOS=$THEOS
 
 
       - name: Hash YT ipa url
