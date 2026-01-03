@@ -119,18 +119,6 @@ jobs:
           echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH
           (echo export PATH="/usr/local/opt/make/libexec/gnubin:$PATH" >> ~/.bash_profile)
           source ~/.bash_profile
-
-      - name: Install libundirect
-        run: |
-          # Use the updated fork that works with modern SDKs
-          git clone https://github.com/Laitinlok/libundirect.git
-          cd libundirect
-     
-          # Build and install with the correct THEOS path and SDK
-          make THEOS=$THEOS FINALPACKAGE=1
-          make install THEOS=$THEOS
-        env:
-          THEOS: ${{ github.workspace }}/theos
       
       - name: Hash YT ipa url
         run: |
